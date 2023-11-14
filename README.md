@@ -34,3 +34,4 @@ Este servidor tem como objetivo solucionar problemas internos relacionados à co
 ### RNFs (Requisitos NÃO-Funcionais)
 - [ ] A senha do usuário precisa estar criptografada(hash);
 - [ ] Os dados da aplicação precisam estar persistidos em um db MySQL;
+- [ ] Caso não exista a tabela deverá ser criada;

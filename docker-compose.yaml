@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql:8.0
+    restart: always
+    platform: linux/amd64
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: gotest
+      MYSQL_PASSWORD: root
+    ports:
+      - 3306:3306
