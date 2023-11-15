@@ -20,7 +20,7 @@ Este servidor tem como objetivo solucionar problemas internos relacionados à co
 
 ### RFs (Requisitos Funcionais)
 - [ ] Deve ser possível que a instituição possa criar usuários;
-- [ ] Deve ser possível cadastrar livros;
+- [x] Deve ser possível cadastrar livros;
 - [ ] Deve ser possível fazer a consulta de um livro especifico;
 - [ ] Deve ser possível obter a relação de quantidade todos os livros;
 - [ ] Deve ser possível criar Alunos para a consulta de livros;

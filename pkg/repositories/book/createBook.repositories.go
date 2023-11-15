@@ -1,18 +1,14 @@
-package repositories
+package book
 
 import (
 	"database/sql"
+	"log"
 
 	c "github.com/Noskine/RegistrationConsultationOfBooks/config"
 	"github.com/google/uuid"
 )
 
-type Book struct {
-	Id       string `json:"id"`
-	Name     string `json:"name"`
-	Author   string `json:"author"`
-	Quantity int8   `json:"quantity"`
-}
+var db *sql.DB = c.Connection()
 
 func NewBook(name, author string, quantity int8) *Book {
 	return &Book{
@@ -23,7 +19,7 @@ func NewBook(name, author string, quantity int8) *Book {
 	}
 }
 
-func createTabaleIfNotExists(db *sql.DB) error {
+func CreateTabaleIfNotExists(db *sql.DB) error {
 	_, err := db.Exec(`CREATE TABLE IF NOT EXISTS books 
 		(id varchar(80), 
 		name varchar(80), 
@@ -37,7 +33,7 @@ func createTabaleIfNotExists(db *sql.DB) error {
 	return nil
 }
 
-func insetInto(db *sql.DB, b *Book) error {
+func InsetInto(db *sql.DB, b *Book) error {
 	stmt, err := db.Prepare("INSERT INTO books(id, name, author, quantity) VALUES( ?, ?, ?, ? ) ")
 	if err != nil {
 		return err
@@ -52,19 +48,17 @@ func insetInto(db *sql.DB, b *Book) error {
 	return nil
 }
 
-func CreateBookRepositories(name, author string, quantity int8) error {
-	db := c.Connection()
-	println(db)
-	err := createTabaleIfNotExists(db)
-	if err != nil {
+func CreateBook(name, author string, quantity int8) error {
+	defer db.Close()
+	if err := CreateTabaleIfNotExists(db); err != nil {
 		return err
 	}
 	book := NewBook(name, author, quantity)
 
-	err = insetInto(db, book)
-	if err != nil {
+	if err := InsetInto(db, book); err != nil {
 		return err
 	}
 
+	log.Println("Inserção no banco de dados conluida com sucesso!")
 	return nil
 }

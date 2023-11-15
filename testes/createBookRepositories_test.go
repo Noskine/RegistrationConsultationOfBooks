@@ -1,4 +1,4 @@
-package repositories
+package testes
 
 import (
 	"database/sql"
@@ -6,16 +6,17 @@ import (
 	"testing"
 
 	c "github.com/Noskine/RegistrationConsultationOfBooks/config"
+	book2 "github.com/Noskine/RegistrationConsultationOfBooks/pkg/repositories/book"
 )
 
 func TestCreateBookRepositories(t *testing.T) {
-	var book *Book = NewBook("Querido Jhon", "Nicholas Spark", 3)
+	var book *book2.Book = book2.NewBook("Querido Jhon", "Nicholas Spark", 3)
 	var pass string = fmt.Sprintf("\033[33m\033[1m PASS...")
 	var db *sql.DB = c.Connection()
 
 	t.Run("Testando a criação de livros", func(t *testing.T) {
 		t.Helper()
-		esperado := &Book{
+		esperado := &book2.Book{
 			Id:       book.Id,
 			Name:     "Querido Jhon",
 			Author:   "Nicholas Spark",
@@ -31,7 +32,7 @@ func TestCreateBookRepositories(t *testing.T) {
 	})
 
 	t.Run("Testando a criação de tabelas no banco de dados", func(t *testing.T) {
-		err := createTabaleIfNotExists(db)
+		err := book2.CreateTabaleIfNotExists(db)
 		if err != nil {
 			t.Fatalf("\u001B[31m Error na criação ou validação da tabela: \u001B[1m %v", err)
 		}
@@ -40,7 +41,7 @@ func TestCreateBookRepositories(t *testing.T) {
 	})
 
 	t.Run("Testando a Inserção de Dados na tabela Books", func(t *testing.T) {
-		err := insetInto(db, book)
+		err := book2.InsetInto(db, book)
 		if err != nil {
 			t.Fatalf("\u001B[31m Error na criação ou validação da tabela: \u001B[1m %v", err)
 		}

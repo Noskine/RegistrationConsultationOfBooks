@@ -1,9 +1,9 @@
 package main
 
 import (
-	c "github.com/Noskine/RegistrationConsultationOfBooks/config"
+	"github.com/Noskine/RegistrationConsultationOfBooks/cmd/gorrilaMux"
 )
 
 func main() {
-	c.LoadConfig()
+	gorrilaMux.App()
 }
