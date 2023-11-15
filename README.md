@@ -16,7 +16,7 @@ Este servidor tem como objetivo solucionar problemas internos relacionados à co
 [![JWT Badge](https://img.shields.io/badge/jwt-181818?style=for-the-badge&logo=json-web-tokens&logoColor=yellow)](https://jwt.io/) 
 ## 👨‍💻 | Modelagem de software
 
-> ⚠ Obs: Este modulo é destinado a recrutadores e demais colegas desenvolvedores que desejam se inspirar no desenvolvimento desta aplicação. Vale lembrar que esse é um dos meus primeiros projetos após 2 anos de estudos intensos. Não leve muito em considerações os erros de arquitetura de repositórios ou boas práticas de programação. 
+> ⚠ Obs: Este modulo é destinado a recrutadores e demais colegas desenvolvedores que desejam se inspirar no desenvolvimento desta aplicação. Vale lembrar que esse é um dos meus primeiros projetos após 2 anos de estudos intensos e apenas poucas semanas de golang. Não leve muito em considerações os erros de arquitetura de repositórios ou boas práticas de programação. 
 
 ### RFs (Requisitos Funcionais)
 - ✅ Deve ser possível que a instituição possa criar usuários;
