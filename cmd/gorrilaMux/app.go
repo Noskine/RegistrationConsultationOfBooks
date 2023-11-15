@@ -13,5 +13,6 @@ func App() {
 
 	routes.Routes(app)
 
+	log.Println("Server is running...")
 	log.Fatal(http.ListenAndServe(":3031", app))
 }

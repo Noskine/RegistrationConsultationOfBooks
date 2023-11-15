@@ -6,5 +6,6 @@ import (
 )
 
 func Routes(r *mux.Router) {
-	r.HandleFunc("/createbook", controllers.CreateBook).Methods("Post")
+	r.HandleFunc("/createbook", controllers.CreateBook).Methods("POST")
+	r.HandleFunc("/createuser", controllers.CreateUser).Methods("POST")
 }

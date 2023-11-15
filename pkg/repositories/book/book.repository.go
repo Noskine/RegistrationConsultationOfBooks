@@ -8,7 +8,12 @@ import (
 	"github.com/google/uuid"
 )
 
-var db *sql.DB = c.Connection()
+type Book struct {
+	Id       string `json:"id"`
+	Name     string `json:"name"`
+	Author   string `json:"author"`
+	Quantity int8   `json:"quantity"`
+}
 
 func NewBook(name, author string, quantity int8) *Book {
 	return &Book{
@@ -19,12 +24,12 @@ func NewBook(name, author string, quantity int8) *Book {
 	}
 }
 
-func CreateTabaleIfNotExists(db *sql.DB) error {
+func ifNotExists(db *sql.DB) error {
 	_, err := db.Exec(`CREATE TABLE IF NOT EXISTS books 
-		(id varchar(80), 
-		name varchar(80), 
+		(id varchar(80) NOT NULL, 
+		name varchar(80) NOT NULL, 
 		author varchar(80), 
-		quantity integer, 
+		quantity integer DEFAULT 1, 
 		primary key (id));
 `)
 	if err != nil {
@@ -33,7 +38,7 @@ func CreateTabaleIfNotExists(db *sql.DB) error {
 	return nil
 }
 
-func InsetInto(db *sql.DB, b *Book) error {
+func insetInto(db *sql.DB, b *Book) error {
 	stmt, err := db.Prepare("INSERT INTO books(id, name, author, quantity) VALUES( ?, ?, ?, ? ) ")
 	if err != nil {
 		return err
@@ -49,13 +54,14 @@ func InsetInto(db *sql.DB, b *Book) error {
 }
 
 func CreateBook(name, author string, quantity int8) error {
+	var db *sql.DB = c.Connection()
 	defer db.Close()
-	if err := CreateTabaleIfNotExists(db); err != nil {
+	if err := ifNotExists(db); err != nil {
 		return err
 	}
 	book := NewBook(name, author, quantity)
 
-	if err := InsetInto(db, book); err != nil {
+	if err := insetInto(db, book); err != nil {
 		return err
 	}
 

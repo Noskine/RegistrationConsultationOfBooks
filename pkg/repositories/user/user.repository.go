@@ -9,20 +9,20 @@ import (
 )
 
 type User struct {
-	Id            string `json:"id"`
-	Username      string `json:"username"`
-	Email         string `json:"email"`
-	Password_Hash string `json:"-"`
-	function      string `json:"function"`
+	Id       string `json:"id"`
+	Username string `json:"username"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
+	Function string `json:"function"`
 }
 
 func NewUser(username, email, function, password_hash string) *User {
 	return &User{
-		Id:            uuid.New().String(),
-		Username:      username,
-		Email:         email,
-		Password_Hash: password_hash,
-		function:      function,
+		Id:       uuid.New().String(),
+		Username: username,
+		Email:    email,
+		Password: password_hash,
+		Function: function,
 	}
 }
 
@@ -32,7 +32,7 @@ func ifNotExists(db *sql.DB) error {
 		username varchar(80) NOT NULL,
 		password varchar(80), 
     	email varchar(80) NOT NULL UNIQUE,
-		function varchar(80), 
+		position varchar(80) NOT NULL, 
 		primary key (id)
     );`)
 	if err != nil {
@@ -42,11 +42,11 @@ func ifNotExists(db *sql.DB) error {
 }
 
 func insetInto(db *sql.DB, user *User) error {
-	inset, err := db.Prepare("INSERT INTO users(id, username, password, email, function) VALUES(?,?,?,?,?)")
+	inset, err := db.Prepare("INSERT INTO users(id, username, password, email, position) VALUES(?,?,?,?,?)")
 	if err != nil {
 		return err
 	}
-	_, err = inset.Exec(user.Id, user.Username, user.Password_Hash, user.Email, user.function)
+	_, err = inset.Exec(user.Id, user.Username, user.Password, user.Email, user.Function)
 	if err != nil {
 		return err
 	}
@@ -62,9 +62,9 @@ func CreateUser(username, email, password, function string) error {
 		return err
 	}
 
-	password_hash := utils.PasswordHash([]byte(password))
+	passwordHash := utils.PasswordHash([]byte(password))
 
-	user := NewUser(username, email, function, password_hash)
+	user := NewUser(username, email, function, passwordHash)
 
 	err := insetInto(db, user)
 	if err != nil {
