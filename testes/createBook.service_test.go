@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/Noskine/RegistrationConsultationOfBooks/pkg/controllers/services"
+	"github.com/Noskine/RegistrationConsultationOfBooks/pkg/services"
 )
 
 func TestCreateBookService(t *testing.T) {

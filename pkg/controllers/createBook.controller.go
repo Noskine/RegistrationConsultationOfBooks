@@ -4,7 +4,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/Noskine/RegistrationConsultationOfBooks/pkg/controllers/services"
+	"github.com/Noskine/RegistrationConsultationOfBooks/pkg/services"
 )
 
 func CreateBook(rw http.ResponseWriter, r *http.Request) {

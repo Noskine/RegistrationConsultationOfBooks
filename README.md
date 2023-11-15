@@ -20,6 +20,7 @@ Este servidor tem como objetivo solucionar problemas internos relacionados à co
 
 ### RFs (Requisitos Funcionais)
 - [ ] Deve ser possível que a instituição possa criar usuários;
+- [ ] Dever ser possível que o usuário possa pegar 
 - [x] Deve ser possível cadastrar livros;
 - [ ] Deve ser possível fazer a consulta de um livro especifico;
 - [ ] Deve ser possível obter a relação de quantidade todos os livros;
@@ -32,6 +33,6 @@ Este servidor tem como objetivo solucionar problemas internos relacionados à co
 - [ ] O aluno terá que entregar o livro em até 15 dias;
 
 ### RNFs (Requisitos NÃO-Funcionais)
-- [ ] A senha do usuário precisa estar criptografada(hash);
+- [x] A senha do usuário precisa estar criptografada(hash);
 - [ ] Os dados da aplicação precisam estar persistidos em um db MySQL;
 - [ ] Caso não exista a tabela deverá ser criada;
