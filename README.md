@@ -23,7 +23,7 @@ Este servidor tem como objetivo solucionar problemas internos relacionados à co
 - 🔴 Deve ser possível que o usuário pegue seu perfil;
 - ✅ Deve ser possível cadastrar livros;
 - 🔴 Deve ser possível fazer a consulta de um livro especifico;
-- 🔴 Deve ser possível obter a relação de quantidade todos os livros;
+- ✅ Deve ser possível obter a relação de quantidade todos os livros;
 - 🔴 Deve ser possível criar Alunos para a consulta de livros;
 - 🔴 Deve ser possível o Aluno realizar o check-in dos livros;
 ### RNs (Regras de negócio)

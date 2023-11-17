@@ -8,12 +8,16 @@ import (
 	"github.com/google/uuid"
 )
 
+var db *sql.DB = c.Connection()
+
 type Book struct {
 	Id       string `json:"id"`
 	Name     string `json:"name"`
 	Author   string `json:"author"`
 	Quantity int8   `json:"quantity"`
 }
+
+type Books []Book
 
 func NewBook(name, author string, quantity int8) *Book {
 	return &Book{
@@ -22,6 +26,44 @@ func NewBook(name, author string, quantity int8) *Book {
 		Author:   author,
 		Quantity: quantity,
 	}
+}
+
+func CreateBook(name, author string, quantity int8) error {
+	defer db.Close()
+	if err := ifNotExists(db); err != nil {
+		return err
+	}
+	book := NewBook(name, author, quantity)
+
+	if err := insetInto(db, book); err != nil {
+		return err
+	}
+
+	log.Println("Inserção no banco de dados conluida com sucesso!")
+	return nil
+}
+
+func FindAllBooks() (*Books, error) {
+	defer db.Close()
+	rows, err := db.Query("SELECT * FROM books ORDER BY name;")
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var b Books
+	for rows.Next() {
+		var book Book
+		err = rows.Scan(&book.Id, &book.Name, &book.Author, &book.Quantity)
+		if err != nil {
+			return nil, err
+		}
+		b = append(b, book)
+	}
+	err = rows.Err()
+	if err != nil {
+		return nil, err
+	}
+	return &b, nil
 }
 
 func ifNotExists(db *sql.DB) error {
@@ -50,21 +92,5 @@ func insetInto(db *sql.DB, b *Book) error {
 		return err
 	}
 
-	return nil
-}
-
-func CreateBook(name, author string, quantity int8) error {
-	var db *sql.DB = c.Connection()
-	defer db.Close()
-	if err := ifNotExists(db); err != nil {
-		return err
-	}
-	book := NewBook(name, author, quantity)
-
-	if err := insetInto(db, book); err != nil {
-		return err
-	}
-
-	log.Println("Inserção no banco de dados conluida com sucesso!")
 	return nil
 }

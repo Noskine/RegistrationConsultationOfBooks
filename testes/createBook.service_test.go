@@ -10,18 +10,16 @@ import (
 func TestCreateBookService(t *testing.T) {
 	var pass string = fmt.Sprintf("\033[33m\033[1m PASS...")
 
-	t.Run("", func(t *testing.T) {
-		err := services.CreateBookService([]byte(`
+	err := services.CreateBookService([]byte(`
 					{
-						"name":"Um porto seguro",
-						"author": "nicholas spark",
-						"quantity": 2
+						"name":"A linguagem de progamação go",
+						"author": "",
+						"quantity": 10
 					}
 				`))
-		if err != nil {
-			t.Fatalf("Erro no serviço de criação dos livros")
-		}
+	if err != nil {
+		t.Fatalf("Erro no serviço de criação dos livros")
+	}
 
-		t.Log("\n" + "Testando a Inserção de Dados na tabela Books" + pass)
-	})
+	t.Log("\n" + "Testando a Inserção de Dados na tabela Books" + pass)
 }

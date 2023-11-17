@@ -8,4 +8,5 @@ import (
 func Routes(r *mux.Router) {
 	r.HandleFunc("/createbook", controllers.CreateBook).Methods("POST")
 	r.HandleFunc("/createuser", controllers.CreateUser).Methods("POST")
+	r.HandleFunc("/book", controllers.FindAllBooks).Methods("GET")
 }
