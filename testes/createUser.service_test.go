@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/Noskine/RegistrationConsultationOfBooks/pkg/services"
+	"github.com/Noskine/RegistrationConsultationOfBooks/pkg/services/usersServices"
 )
 
 func TestName(t *testing.T) {
@@ -13,7 +13,7 @@ func TestName(t *testing.T) {
 	var pass string = fmt.Sprintf("\033[33mPASS...")
 
 	t.Run("Testando a criação de um usuário no banco de dados", func(t *testing.T) {
-		err := services.CreateUserService([]byte(`{
+		err := usersServices.CreateUserService([]byte(`{
 			"username":"adm",
 			"email": "adm@email.com",
 			"password": "12345",
@@ -28,7 +28,7 @@ func TestName(t *testing.T) {
 	})
 
 	t.Run("", func(t *testing.T) {
-		err := services.CreateUserService([]byte(`{
+		err := usersServices.CreateUserService([]byte(`{
 			"username":"adm",
 			"email": "adm@email.com",
 			"password": "12345",

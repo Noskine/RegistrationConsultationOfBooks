@@ -7,21 +7,20 @@ import (
 )
 
 func TestFindAllBooks(t *testing.T) {
-	books, err := book.FindAllBooks()
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	t.Log(*books)
-}
-
-func BenchmarkFindAll(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	t.Run("test de findall", func(t *testing.T) {
 		books, err := book.FindAllBooks()
 		if err != nil {
-			b.Fatal(err)
+			t.Fatal(err)
 		}
 
-		b.Log(books)
-	}
+		t.Log(*books)
+	})
+	t.Run("test de findbyPK", func(t *testing.T) {
+		b, err := book.FindByPk("752317fb-b814-456d-8bfd-46ea929cc71e")
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		t.Log(*b)
+	})
 }

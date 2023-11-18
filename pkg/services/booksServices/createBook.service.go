@@ -1,4 +1,4 @@
-package services
+package booksServices
 
 import (
 	"encoding/json"

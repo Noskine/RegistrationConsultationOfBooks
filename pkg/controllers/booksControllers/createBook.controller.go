@@ -1,10 +1,10 @@
-package controllers
+package booksControllers
 
 import (
 	"io"
 	"net/http"
 
-	"github.com/Noskine/RegistrationConsultationOfBooks/pkg/services"
+	"github.com/Noskine/RegistrationConsultationOfBooks/pkg/services/booksServices"
 )
 
 func CreateBook(rw http.ResponseWriter, r *http.Request) {
@@ -13,7 +13,7 @@ func CreateBook(rw http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	if err := services.CreateBookService(reqBody); err != nil {
+	if err := booksServices.CreateBookService(reqBody); err != nil {
 		rw.WriteHeader(http.StatusBadRequest)
 	}
 

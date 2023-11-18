@@ -27,7 +27,7 @@ func NewUser(username, email, function, password_hash string) *User {
 }
 
 func ifNotExists(db *sql.DB) error {
-	_, err := db.Exec(`CREATE TABLE IF NOT EXISTS users (
+	_, err := db.Exec(`CREATE TABLE IF NOT EXISTS usersControllers (
     	id varchar(80) NOT NULL, 
 		username varchar(80) NOT NULL,
 		password varchar(80), 
@@ -42,7 +42,7 @@ func ifNotExists(db *sql.DB) error {
 }
 
 func insetInto(db *sql.DB, user *User) error {
-	inset, err := db.Prepare("INSERT INTO users(id, username, password, email, position) VALUES(?,?,?,?,?)")
+	inset, err := db.Prepare("INSERT INTO usersControllers(id, username, password, email, position) VALUES(?,?,?,?,?)")
 	if err != nil {
 		return err
 	}
@@ -72,4 +72,18 @@ func CreateUser(username, email, password, function string) error {
 	}
 
 	return nil
+}
+
+func FindByPk(id string) (*User, error) {
+	db := c.Connection()
+	stmt, err := db.Prepare("SELECT id, email, username, position FROM usersControllers WHERE id = ?")
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	var user User
+	stmt.QueryRow(id).Scan(&user.Id, &user.Email, &user.Username, &user.Function)
+
+	return &user, nil
 }

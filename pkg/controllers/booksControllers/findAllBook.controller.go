@@ -1,13 +1,13 @@
-package controllers
+package booksControllers
 
 import (
 	"net/http"
 
-	"github.com/Noskine/RegistrationConsultationOfBooks/pkg/services"
+	"github.com/Noskine/RegistrationConsultationOfBooks/pkg/services/booksServices"
 )
 
 func FindAllBooks(rw http.ResponseWriter, r *http.Request) {
-	books, err := services.FindAllBooks()
+	books, err := booksServices.FindAllBooks()
 	if err != nil {
 		rw.WriteHeader(http.StatusBadRequest)
 		_, err2 := rw.Write([]byte("Err is in findALL"))

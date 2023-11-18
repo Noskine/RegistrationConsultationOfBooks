@@ -1,4 +1,4 @@
-package services
+package booksServices
 
 import (
 	"encoding/json"
@@ -6,13 +6,13 @@ import (
 	"github.com/Noskine/RegistrationConsultationOfBooks/pkg/repositories/book"
 )
 
-func FindAllBooks() ([]byte, error) {
-	books, err := book.FindAllBooks()
+func FindPyPKBook(id string) ([]byte, error) {
+	b, err := book.FindByPk(id)
 	if err != nil {
 		return nil, err
 	}
 
-	marshal, err := json.Marshal(books)
+	marshal, err := json.Marshal(b)
 	if err != nil {
 		return nil, err
 	}

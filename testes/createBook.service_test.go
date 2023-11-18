@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/Noskine/RegistrationConsultationOfBooks/pkg/services"
+	"github.com/Noskine/RegistrationConsultationOfBooks/pkg/services/booksServices"
 )
 
 func TestCreateBookService(t *testing.T) {
 	var pass string = fmt.Sprintf("\033[33m\033[1m PASS...")
 
-	err := services.CreateBookService([]byte(`
+	err := booksServices.CreateBookService([]byte(`
 					{
 						"name":"A linguagem de progamação go",
 						"author": "",

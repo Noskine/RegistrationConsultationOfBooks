@@ -8,8 +8,6 @@ import (
 	"github.com/google/uuid"
 )
 
-var db *sql.DB = c.Connection()
-
 type Book struct {
 	Id       string `json:"id"`
 	Name     string `json:"name"`
@@ -29,6 +27,7 @@ func NewBook(name, author string, quantity int8) *Book {
 }
 
 func CreateBook(name, author string, quantity int8) error {
+	db := c.Connection()
 	defer db.Close()
 	if err := ifNotExists(db); err != nil {
 		return err
@@ -44,8 +43,8 @@ func CreateBook(name, author string, quantity int8) error {
 }
 
 func FindAllBooks() (*Books, error) {
-	defer db.Close()
-	rows, err := db.Query("SELECT * FROM books ORDER BY name;")
+	db := c.Connection()
+	rows, err := db.Query("SELECT * FROM booksControllers ORDER BY name;")
 	if err != nil {
 		return nil, err
 	}
@@ -67,7 +66,7 @@ func FindAllBooks() (*Books, error) {
 }
 
 func ifNotExists(db *sql.DB) error {
-	_, err := db.Exec(`CREATE TABLE IF NOT EXISTS books 
+	_, err := db.Exec(`CREATE TABLE IF NOT EXISTS booksControllers 
 		(id varchar(80) NOT NULL, 
 		name varchar(80) NOT NULL, 
 		author varchar(80), 
@@ -81,7 +80,7 @@ func ifNotExists(db *sql.DB) error {
 }
 
 func insetInto(db *sql.DB, b *Book) error {
-	stmt, err := db.Prepare("INSERT INTO books(id, name, author, quantity) VALUES( ?, ?, ?, ? ) ")
+	stmt, err := db.Prepare("INSERT INTO booksControllers(id, name, author, quantity) VALUES( ?, ?, ?, ? ) ")
 	if err != nil {
 		return err
 	}
@@ -93,4 +92,18 @@ func insetInto(db *sql.DB, b *Book) error {
 	}
 
 	return nil
+}
+
+func FindByPk(id string) (*Book, error) {
+	db := c.Connection()
+	stmt, err := db.Prepare("SELECT * FROM booksControllers WHERE id =?")
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	var book Book
+	stmt.QueryRow(id).Scan(&book.Id, &book.Name, &book.Author, &book.Quantity)
+
+	return &book, nil
 }
