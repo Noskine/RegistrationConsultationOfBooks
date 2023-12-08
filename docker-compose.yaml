@@ -8,6 +8,5 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: gotest
-      MYSQL_PASSWORD: root
     ports:
       - 3306:3306
