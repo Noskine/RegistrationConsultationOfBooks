@@ -1,8 +1,6 @@
 package book
 
 import (
-	"log"
-
 	"github.com/Noskine/RegistrationConsultationOfBooks/config"
 	"github.com/Noskine/RegistrationConsultationOfBooks/internal/entities"
 )
@@ -11,7 +9,7 @@ func createTableAndIfNotExist() error {
 	db := config.Connection()
 
 	_, err := db.Exec(`
-	CREATE TABLE IF NOT EXISTS booksControllers 
+	CREATE TABLE IF NOT EXISTS books
 		(id varchar(80) NOT NULL, 
 		name varchar(80) NOT NULL, 
 		author varchar(80), 
@@ -33,7 +31,7 @@ func Create(b *entities.Book) error {
 		return err
 	}
 
-	stmt, err := db.Prepare("INSERT INTO `booksControllers` (`id`, `name`,`author`,`quantity`) VALUES (?,?,?,?)")
+	stmt, err := db.Prepare("INSERT INTO `books` (`id`, `name`,`author`,`quantity`) VALUES (?,?,?,?)")
 	if err != nil {
 		return err
 	}
@@ -45,14 +43,13 @@ func Create(b *entities.Book) error {
 		return err
 	}
 
-	log.Println("Inserção no banco de dados conluida com sucesso!")
 	return nil
 }
 
 func FindAll() (*[]entities.Book, error) {
 	db := config.Connection()
 
-	rows, err := db.Query("SELECT * FROM booksControllers ORDER BY name;")
+	rows, err := db.Query("SELECT * FROM books ORDER BY name;")
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +77,7 @@ func FindAll() (*[]entities.Book, error) {
 func FindByPk(id string) (*entities.Book, error) {
 	db := config.Connection()
 
-	stmt, err := db.Prepare("SELECT * FROM booksControllers WHERE id =?")
+	stmt, err := db.Prepare("SELECT * FROM books WHERE id =?")
 	if err != nil {
 		return nil, err
 	}

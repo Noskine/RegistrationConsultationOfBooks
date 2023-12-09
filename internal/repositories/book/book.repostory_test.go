@@ -24,11 +24,13 @@ func TestBookRepository(t *testing.T) {
 		res, err := book.FindAll()
 		if err != nil {
 			t.Errorf("Error trying to fetch all books -> %s", err)
+			return
 		}
 
 		sBytes, err := json.Marshal(res)
 		if err != nil {
 			t.Errorf("Error when transforming the struct book into a byte slice-> %s", err)
+			return
 		}
 
 		t.Logf("Searches for the books completed successfully! -> %s", string(sBytes))
@@ -40,11 +42,13 @@ func TestBookRepository(t *testing.T) {
 		res, err := book.FindByPk(id)
 		if err != nil {
 			t.Errorf("Error searching for book with primary key -> %s", err)
+			return
 		}
 
 		sBytes, err := json.Marshal(res)
 		if err != nil {
 			t.Errorf("Error when transforming the struct book into a byte slice-> %s", err)
+			return
 		}
 
 		t.Logf("Success in searching for the book via primary key -> %s", string(sBytes))
