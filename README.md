@@ -18,6 +18,11 @@ Este servidor tem como objetivo solucionar problemas internos relacionados à co
 
 > ⚠ Obs: Este modulo é destinado a recrutadores e demais colegas desenvolvedores que desejam se inspirar no desenvolvimento desta aplicação. Vale lembrar que esse é um dos meus primeiros projetos após 2 anos de estudos intensos e apenas poucas semanas de golang. Não leve muito em considerações os erros de arquitetura de repositórios ou boas práticas de programação. 
 
+### Entities
+- User
+- Book
+- SchoolBoy
+
 ### RFs (Requisitos Funcionais)
 - 🔴 Deve ser possível que a instituição possa criar usuários;
 - 🔴 Deve ser possível que o usuário pegue seu perfil;
