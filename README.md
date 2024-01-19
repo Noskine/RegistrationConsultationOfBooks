@@ -11,7 +11,8 @@ Este servidor tem como objetivo solucionar problemas internos relacionados à co
 > ⚠ Obs: Todas as tecnologias foram escolhidas levando em consideração a qualidade de software, custo de produção, tempo e afinidade;
 
 [![GoLang Badge](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)](https://go.dev/)
-[![MySql Badge](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![GoLang Badge](https://img.shields.io/badge/Echo-00ADD8?style=for-the-badge&logo&logoColor=white)](https://go.dev/)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 [![JWT Badge](https://img.shields.io/badge/jwt-181818?style=for-the-badge&logo=json-web-tokens&logoColor=yellow)](https://jwt.io/) 
 ## 👨‍💻 | Modelagem de software
