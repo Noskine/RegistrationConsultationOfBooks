@@ -20,3 +20,5 @@ go.work
 .idea
 .env
 config/env.go
+
+go.sum
