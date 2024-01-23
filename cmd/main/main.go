@@ -1,16 +1,17 @@
 package main
 
 import (
+	"net/http"
+
 	"github.com/Noskine/RegistrationConsultationOfBooks/config"
 	ihttp "github.com/Noskine/RegistrationConsultationOfBooks/pkg/http"
-	r "github.com/Noskine/RegistrationConsultationOfBooks/pkg/routes"
 )
 
 func main() {
 	env := config.LoadEnvironments()
+	e := ihttp.NewServer().LoadServer()
 
-	e := ihttp.NewRouter().E
-	r.Routes(e)
-	
-	e.Logger.Fatal(e.Start(env.APP_PORT))
+	if err := e.Start(env.APP_PORT); err != http.ErrServerClosed {
+		e.Logger.Fatal(err)
+	}
 }
