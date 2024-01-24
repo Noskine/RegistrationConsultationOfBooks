@@ -15,6 +15,7 @@ func RegisterUser(user *entities.User) error {
 	coll := client.Database("School").Collection("User")
 
 	_, err := coll.InsertOne(context.TODO(), user)
+
 	if err != nil {
 		return err
 	}

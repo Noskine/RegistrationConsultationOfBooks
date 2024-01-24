@@ -74,7 +74,7 @@ Estamos estudando formas de implementar um micro serviço de emails.
 ### RNFs (Requisitos NÃO-Funcionais)
 
 - [ ] A senha do usuário precisa estar criptografada(hash);
-- [ ] Os dados da aplicação precisam estar persistidos em MongoDb;
+- [X] Os dados da aplicação precisam estar persistidos em MongoDb;
 
 
 version: 0.2.3

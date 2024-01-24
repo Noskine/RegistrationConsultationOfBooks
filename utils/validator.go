@@ -8,11 +8,11 @@ import (
 )
 
 type CustomValidator struct {
-	validator *validator.Validate
+	V *validator.Validate
 }
 
-func (cv *CustomValidator) Validate(i interface{}) error {
-	if err := cv.validator.Struct(i); err != nil {
+func (cv *CustomValidator) Validate(i any) error {
+	if err := cv.V.Struct(i); err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 	return nil

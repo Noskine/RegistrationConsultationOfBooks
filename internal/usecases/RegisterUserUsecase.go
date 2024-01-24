@@ -10,7 +10,7 @@ func RegisterUserUsecase(req *dto.InputRegisterUserDTO) (*dto.OutputRegisterUser
 	user := entities.NewUser(req.UserName, req.Email)
 
 	if err := repositories.RegisterUser(user); err != nil {
-		return nil, err
+		return dto.NewOutputRegisterUserDTO("Sucesso ao cadrastrar usuário"), err
 	}
 
 	return dto.NewOutputRegisterUserDTO("Error ao cadrastrar o usuário"), nil

@@ -22,3 +22,6 @@ go.work
 config/env.go
 
 go.sum
+
+tmp
+ 

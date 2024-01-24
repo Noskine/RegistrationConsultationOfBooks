@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
+	ihttp "github.com/Noskine/RegistrationConsultationOfBooks/cmd/http"
 	"github.com/Noskine/RegistrationConsultationOfBooks/config"
-	ihttp "github.com/Noskine/RegistrationConsultationOfBooks/pkg/http"
 )
 
 func main() {
