@@ -28,23 +28,24 @@ Estamos estudando formas de implementar um micro serviço de emails.
 - User
 
 `
-    UserEntity: {
-        id: cuid,
-        username: string,
-        adm: boolean,
-        email: email,
-        password_hash: hash
+    User: {
+        Id       primitive.ObjectID 
+        UserName string            
+        Email    string            
+        CrateAt  time.Time         
+        Unique   bool              
     } `
 
 - Book
 
 `
-    BookEntity: {
-        id: uuid,
-        name: string,
-        author: string,
-        quantity: int8,
-        available: int8, 
+    Book: {
+        Id              primitive.ObjectID 
+        Name            string             
+        Author          string            
+        Category        string            
+        Quantity        int32             
+        CopiesAvailable int32           
     } `
 
 ### RFs (Requisitos Funcionais)

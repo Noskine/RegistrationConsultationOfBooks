@@ -30,8 +30,8 @@ func NewConnection() *Db {
 	}
 }
 
-func (db *Db) Database(name string) *mongo.Database {
-	return db.client.Database(name)
+func (db *Db) Collection(database, collectionName string) *mongo.Collection {
+	return db.client.Database(database).Collection(collectionName)
 }
 
 func (db *Db) Desc() {

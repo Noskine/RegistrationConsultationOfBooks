@@ -12,6 +12,7 @@ func main() {
 	e := ihttp.NewServer().LoadServer()
 
 	if err := e.Start(env.APP_PORT); err != http.ErrServerClosed {
+
 		e.Logger.Fatal(err)
 	}
 }
